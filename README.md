@@ -1,6 +1,6 @@
-# vue-shapeland
+# shape_land
 
-> play with shapes using Vue.js framework
+> Play with shapes as prove of concept using Vue.js framework
 
 ## Build Setup
 

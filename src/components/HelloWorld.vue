@@ -1,4 +1,3 @@
-<div>
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
@@ -36,7 +35,7 @@
           Twitter
         </a>
       </li>
-      <br />
+      <br>
       <li>
         <a
           href="http://vuejs-templates.github.io/webpack/"
@@ -85,21 +84,19 @@
 </template>
 
 <script>
-// eslint-disable-next-line
 export default {
-  name: "HelloWorld",
-  data() {
+  name: 'HelloWorld',
+  data () {
     return {
-      msg: "Welcome to Your Vue.js App",
-    };
-  },
-};
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
-h2 {
+h1, h2 {
   font-weight: normal;
 }
 ul {
@@ -114,4 +111,3 @@ a {
   color: #42b983;
 }
 </style>
-</div>

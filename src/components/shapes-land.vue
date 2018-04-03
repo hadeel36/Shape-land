@@ -3,31 +3,31 @@
     <div class="shapes__wrapper">
       <div class="shape__wrapper">
         <svg class="svg__wrapper">
-          <rect width="100" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+          <rect :width="7*seqRange" :height="7*seqRange" v-bind:style="{fill:seqColor}" />
         </svg>
         <div class="shape__config">
-          <input type="range">
-          <input type="color" name="color" defaultValue="#ff0000">
+          <input type="range" name="seqRange" v-on:input="handleRangeChange" v-model="seqRange" min="15" max="25" step="1">
+          <input type="color" name="seqColor" v-on:input="handleColorChange" v-model="seqColor">
         </div>
       </div>
 
       <div>
         <svg class="svg__wrapper">
-          <ellipse cx="200" cy="80" rx="50" ry="50" style="fill:yellow;stroke:purple;stroke-width:2;transform: translate(-117px);" />
+          <ellipse cx="200" cy="80" :rx="3*ellRange" :ry="3*ellRange" v-bind:style="{fill:ellColor}" style="transform: translate(-117px);" />
         </svg>
         <div class="shape__config">
-          <input type="range">
-          <input type="color" name="color" defaultValue="#ff0000">
+          <input type="range" name="ellRange" v-on:input="handleRangeChange" v-model="ellRange" min="15" max="25" step="1">
+          <input type="color" name="ellColor" v-on:input="handleColorChange" v-model="ellColor">
         </div>
       </div>
 
       <div class="bottom">
         <svg class="svg__wrapper">
-          <polygon points="250,60 100,400 400,400" style="fill:yellow;stroke:purple;stroke-width:2;transform: translate(-117px);" />
+          <polygon :points="polygonPoint" v-bind:style="{fill:triColor}" style="transform: translate(-117px);" />
         </svg>
         <div class="shape__config">
-          <input type="range">
-          <input type="color" name="color" defaultValue="#ff0000">
+          <input type="range" name="triRange" v-on:input="handleRangeChange" v-model="triRange" min="50" max="500" step="20">
+          <input type="color" name="triColor" v-on:input="handleColorChange" v-model="triColor">
         </div>
       </div>
     </div>
@@ -40,6 +40,27 @@
 <script>
 export default {
   name: "shapesLand",
+  data() {
+    return {
+      seqRange: 19,
+      ellRange: 21,
+      triRange: 17,
+      triColor: "#914a62",
+      ellColor: "#914a62",
+      seqColor: "#914a62",
+      polygonPoint: "250,60 100,400 400,400",
+    }
+  },
+  methods: {
+    handleColorChange: function(event) {
+      [event.target.name] = event.target.value;
+    },
+    handleRangeChange: function(event) {
+      event.target.name === "triRange" ?
+        this.polygonPoint = `250-${event.target.value},60 100,400-${event.target.value} 400-${event.target.value},400-${event.target.value}`
+        : event.target.name = event.target.value;
+    },
+  }
 };
 </script>
 

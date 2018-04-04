@@ -80,5 +80,6 @@ export default {
 .md-drawer {
   width: 230px;
   max-width: calc(100vw - 125px);
+  border-right: 1px solid rgba(24, 21, 21, 0.6);
 }
 </style>

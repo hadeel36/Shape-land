@@ -11,11 +11,11 @@
               class="seq-position"
             />
             <text
-              x="25"
+              x="110"
               y="70"
               font-family="Verdana"
-              font-size="35"
-              fill="blue"
+              font-size="23"
+              fill="white"
             >
               {{this.$store.state.seqText}}
             </text>
@@ -67,10 +67,13 @@
       </div>
 
       <div class="bottom">
-        <svg class="svg__wrapper">
+        <svg
+          class="svg__wrapper"
+          v-bind:style="{transform:`rotate(${triRotate}deg)`}"
+        >
           <polygon
-            :points="polygonPoint"
-            v-bind:style="{fill:triColor,transform:`rotate(-${triRotate}deg)`}"
+            :points="polygon"
+            v-bind:style="{fill:triColor}"
             class="tri-position"
           />
         </svg>
@@ -80,8 +83,8 @@
             name="triRotate"
             v-on:input="handleRotateChange"
             v-model="triRotate"
-            min="10"
-            max="40"
+            min="-180"
+            max="180"
             step="5"
           />
         </div>
@@ -101,7 +104,7 @@ export default {
       ellColor: this.$store.state.ellColor,
       seqColor: this.$store.state.seqColor,
       triRotate: this.$store.state.triRotate,
-      polygonPoint: this.$store.state.polygonPoint,
+      polygon: this.$store.state.polygon,
     };
   },
   methods: {
@@ -113,7 +116,7 @@ export default {
     },
     handleRangeChange: function(event) {
       event.target.name === "triRange"
-        ? (this.polygonPoint = `250-${event.target.value},60 100,400-${
+        ? (this.polygon = `250-${event.target.value},60 100,400-${
             event.target.value
           } 400-${event.target.value},400-${event.target.value}`)
         : (this.$store.state[event.target.name] = event.target.value);

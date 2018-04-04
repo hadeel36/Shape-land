@@ -1,15 +1,13 @@
 .shapes__wrapper {
+  border-right: 1px solid grey;
   float: left;
-}
-
-.shape__wrapper {
-  /* border-right: 1px solid grey; */
+  margin: 4%;
 }
 
 .shape__config {
   float: right;
-  margin-right: -39%;
-  margin-top: 7%;
+  margin-right: -55%;
+  margin-top: 17%;
 }
 
 .svg__wrapper {
@@ -17,16 +15,27 @@
   height: 200px;
 }
 
+.buttons_wrapper {
+  position: absolute;
+  float: right;
+  right: 6%;
+  bottom: 4%;
+}
+
+.icon-color {
+  -webkit-text-fill-color: #5858f8;
+}
+
 .seq-position {
   transform: translate(99px);
 }
 
 .circle-position {
-  transform: translate(-27px);
+  transform: translate(-27px, 30px);
 }
 
 .tri-position {
-  transform: translate(25px);
+  transform: translate(31px);
 }
 
 .bottom {

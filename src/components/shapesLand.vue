@@ -8,13 +8,14 @@
               :width="7*seqRange"
               :height="7*seqRange"
               v-bind:style="{fill:seqColor}"
+              class="seq-position"
             />
             <text
-              x="25"
+              x="110"
               y="70"
               font-family="Verdana"
-              font-size="35"
-              fill="blue"
+              font-size="23"
+              fill="white"
             >
               {{seqText}}
             </text>
@@ -26,8 +27,8 @@
             name="seqRange"
             v-on:input="handleRangeChange"
             v-model="seqRange"
-            min="15"
-            max="25"
+            min="10"
+            max="30"
             step="1"
           />
           <input
@@ -47,7 +48,7 @@
             :rx="3*ellRange"
             :ry="3*ellRange"
             v-bind:style="{fill:ellColor}"
-            style="transform: translate(-117px)"
+            class="circle-position"
           />
         </svg>
         <div class="shape__config">
@@ -56,8 +57,8 @@
             name="ellRange"
             v-on:input="handleRangeChange"
             v-model="ellRange"
-            min="15"
-            max="25"
+            min="10"
+            max="30"
             step="1"
           />
           <input
@@ -70,11 +71,14 @@
       </div>
 
       <div class="bottom">
-        <svg class="svg__wrapper">
+        <svg
+          class="svg__wrapper"
+          v-bind:style="{transform:`rotate(${this.$store.state.triRotate}deg)`}"
+        >
           <polygon
-            :points="polygonPoint"
+            :points="polygon"
             v-bind:style="{fill:triColor}"
-            style="transform: translate(-117px)"
+            class="tri-position"
           />
         </svg>
         <div class="shape__config">
@@ -83,9 +87,9 @@
             name="triRange"
             v-on:input="handleRangeChange"
             v-model="triRange"
-            min="50"
-            max="500"
-            step="20"
+            min="-10"
+            max="10"
+            step="1"
           />
           <input
             type="color"
@@ -95,6 +99,18 @@
           />
         </div>
       </div>
+    </div>
+    <div class="buttons_wrapper">
+      <md-button class="md-fab md-primary">
+        <router-link class="router-link" to="/edit">
+          <md-icon class="icon-color">edit</md-icon>
+        </router-link>
+      </md-button>
+      <md-button class="md-fab md-plain">
+        <router-link class="router-link" to="/add">
+          <md-icon class="icon-color">add</md-icon>
+        </router-link>
+      </md-button>
     </div>
   </div>
 </template>
@@ -110,7 +126,7 @@ export default {
       triColor: this.$store.state.triColor,
       ellColor: this.$store.state.ellColor,
       seqColor: this.$store.state.seqColor,
-      polygonPoint: this.$store.state.polygonPoint,
+      polygon: this.$store.state.polygon,
       seqText: this.$store.state.seqText,
     };
   },
@@ -120,9 +136,8 @@ export default {
     },
     handleRangeChange: function(event) {
       event.target.name === "triRange"
-        ? (this.polygonPoint = `250-${event.target.value},60 100,400-${
-            event.target.value
-          } 400-${event.target.value},400-${event.target.value}`)
+        ? (this.polygon = `150 ${25 - event.target.value}, ${100 -
+            event.target.value} 175, ${200 + Number(event.target.value)} 175`)
         : (this.$store.state[event.target.name] = event.target.value);
     },
   },

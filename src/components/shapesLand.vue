@@ -3,7 +3,10 @@
     <div class="shapes__wrapper">
       <div class="shape__wrapper">
         <svg class="svg__wrapper">
-          <rect :width="7*seqRange" :height="7*seqRange" v-bind:style="{fill:seqColor}" />
+          <g>
+            <rect :width="7*seqRange" :height="7*seqRange" v-bind:style="{fill:seqColor}" />
+            <text x="25" y="70" font-family="Verdana" font-size="35" fill="blue">Hello</text>
+          </g>
         </svg>
         <div class="shape__config">
           <input type="range" name="seqRange" v-on:input="handleRangeChange" v-model="seqRange" min="15" max="25" step="1">

@@ -45,25 +45,27 @@ export default {
   name: "shapesLand",
   data() {
     return {
-      seqRange: 19,
-      ellRange: 21,
-      triRange: 17,
-      triColor: "#914a62",
-      ellColor: "#914a62",
-      seqColor: "#914a62",
-      polygonPoint: "250,60 100,400 400,400",
-    }
+      seqRange: this.$store.state.seqRange,
+      ellRange: this.$store.state.ellRange,
+      triRange: this.$store.state.triRange,
+      triColor: this.$store.state.triColor,
+      ellColor: this.$store.state.ellColor,
+      seqColor: this.$store.state.seqColor,
+      polygonPoint: this.$store.state.polygonPoint,
+    };
   },
   methods: {
     handleColorChange: function(event) {
       [event.target.name] = event.target.value;
     },
     handleRangeChange: function(event) {
-      event.target.name === "triRange" ?
-        this.polygonPoint = `250-${event.target.value},60 100,400-${event.target.value} 400-${event.target.value},400-${event.target.value}`
-        : event.target.name = event.target.value;
+      event.target.name === "triRange"
+        ? (this.polygonPoint = `250-${event.target.value},60 100,400-${
+            event.target.value
+          } 400-${event.target.value},400-${event.target.value}`)
+        : (event.target.name = event.target.value);
     },
-  }
+  },
 };
 </script>
 

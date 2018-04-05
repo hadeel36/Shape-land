@@ -76,7 +76,7 @@
           v-bind:style="{transform:`rotate(${this.$store.state.triRotate}deg)`}"
         >
           <polygon
-            :points="polygon"
+            :points="this.$store.state.polygon"
             v-bind:style="{fill:triColor}"
             class="tri-position"
           />
@@ -126,7 +126,6 @@ export default {
       triColor: this.$store.state.triColor,
       ellColor: this.$store.state.ellColor,
       seqColor: this.$store.state.seqColor,
-      polygon: this.$store.state.polygon,
       seqText: this.$store.state.seqText,
     };
   },
@@ -136,7 +135,7 @@ export default {
     },
     handleRangeChange: function(event) {
       event.target.name === "triRange"
-        ? (this.polygon = `150 ${25 - event.target.value}, ${100 -
+        ? (this.$store.state.polygon = `150 ${25 - event.target.value}, ${100 -
             event.target.value} 175, ${200 + Number(event.target.value)} 175`)
         : (this.$store.state[event.target.name] = event.target.value);
     },

@@ -5,9 +5,11 @@
 }
 
 .shape__config {
+  width: 40%;
   float: right;
   margin-right: -55%;
   margin-top: 17%;
+  overflow: auto;
 }
 
 .svg__wrapper {
@@ -36,6 +38,11 @@
 
 .tri-position {
   transform: translate(31px);
+}
+
+input[type="range"] {
+  color: #5858f8;
+  cursor: move;
 }
 
 .bottom {

@@ -44,25 +44,29 @@
           />
         </svg>
         <div class="shape__config">
-          <input
-            type="range"
-            name="ellRange"
-            v-on:input="handleRangeChange"
-            v-model="ellRange"
-            min="15"
-            max="25"
-            step="1"
-          />
-          <input
-            type="range"
-            name="ellRangeVert"
-            orient="vertical"
-            v-on:input="handleRangeChange"
-            v-model="ellRange"
-            min="15"
-            max="25"
-            step="1"
-          />
+          <div class="hor-range__wrapper">
+            <input
+              type="range"
+              name="ellRangeVert"
+              orient="vertical"
+              v-on:input="handleRangeChange"
+              v-model="ellRange"
+              min="15"
+              max="25"
+              step="1"
+            />
+          </div>
+          <div class="slider-vir__wrapper">
+            <input
+              type="range"
+              name="ellRange"
+              v-on:input="handleRangeChange"
+              v-model="ellRange"
+              min="15"
+              max="25"
+              step="1"
+            />
+          </div>
         </div>
       </div>
 
@@ -122,9 +126,33 @@ export default {
         : (this.$store.state[event.target.name] = event.target.value);
     },
     handleRotateChange: function(event) {
+      console.log("hello");
       this.$store.state.triRotate = event.target.value;
-      console.log(this.triRotate);
     },
   },
 };
 </script>
+
+<style <style lang="scss" scoped>
+.hor-range__wrapper {
+  float: left;
+  margin-top: 38%;
+  margin-right: 16%;
+  height: 150px;
+}
+
+.slider-vir__wrapper {
+  display: inline-block;
+  width: 20px;
+  height: 150px;
+  padding: 0;
+}
+
+.slider-vir__wrapper input {
+  width: 150px;
+  height: 20px;
+  margin: 0;
+  transform-origin: 75px 75px;
+  transform: rotate(-90deg);
+}
+</style>

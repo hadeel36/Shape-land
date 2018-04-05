@@ -45,8 +45,8 @@
           <ellipse
             cx="200"
             cy="80"
-            :rx="3*ellRange"
-            :ry="3*ellRange"
+            :rx="this.$store.state.ellHor ? 3*this.$store.state.ellXRange : 3*ellRange"
+            :ry="this.$store.state.ellVertical ? 3*this.$store.state.ellYRange : 3*ellRange"
             v-bind:style="{fill:ellColor}"
             class="circle-position"
           />
@@ -134,10 +134,25 @@ export default {
       this.$store.state[event.target.name] = event.target.value;
     },
     handleRangeChange: function(event) {
-      event.target.name === "triRange"
-        ? (this.$store.state.polygon = `150 ${25 - event.target.value}, ${100 -
-            event.target.value} 175, ${200 + Number(event.target.value)} 175`)
-        : (this.$store.state[event.target.name] = event.target.value);
+      if (event.target.name === "ellRange") {
+        if (this.$store.state.ellHor) {
+          this.$store.state.ellXRange = event.target.value;
+          this.$store.state.ellRange = event.target.value;
+        } else if (this.$store.state.ellVertical) {
+          this.$store.state.ellYRange = event.target.value;
+          this.$store.state.ellRange = event.target.value;
+        } else {
+          this.$store.state.ellRange = event.target.value;
+          this.$store.state.ellXRange = event.target.value;
+          this.$store.state.ellYRange = event.target.value;
+        }
+      } else {
+        event.target.name === "triRange"
+          ? (this.$store.state.polygon = `150 ${25 -
+              event.target.value}, ${100 - event.target.value} 175, ${200 +
+              Number(event.target.value)} 175`)
+          : (this.$store.state[event.target.name] = event.target.value);
+      }
     },
   },
 };

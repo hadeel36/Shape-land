@@ -7,6 +7,10 @@ export const store = new Vuex.Store({
   state: {
     seqRange: 20,
     ellRange: 20,
+    ellXRange: 20,
+    ellYRange: 20,
+    ellVertical: false,
+    ellHor: false,
     triRange: 0,
     triColor: "#914a62",
     ellColor: "#914a62",

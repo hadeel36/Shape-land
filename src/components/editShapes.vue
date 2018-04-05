@@ -37,8 +37,8 @@
           <ellipse
             cx="200"
             cy="80"
-            :rx="3*ellRange"
-            :ry="3*ellRange"
+            :rx="3*ellXRange"
+            :ry="3*ellYRange"
             v-bind:style="{fill:ellColor}"
             class="circle-position"
           />
@@ -47,10 +47,10 @@
           <div class="hor-range__wrapper">
             <input
               type="range"
-              name="ellRangeVert"
+              name="ellXRange"
               orient="vertical"
               v-on:input="handleRangeChange"
-              v-model="ellRange"
+              v-model="ellXRange"
               min="15"
               max="25"
               step="1"
@@ -59,9 +59,9 @@
           <div class="slider-vir__wrapper">
             <input
               type="range"
-              name="ellRange"
+              name="ellYRange"
               v-on:input="handleRangeChange"
-              v-model="ellRange"
+              v-model="ellYRange"
               min="15"
               max="25"
               step="1"
@@ -103,7 +103,8 @@ export default {
   data() {
     return {
       seqRange: this.$store.state.seqRange,
-      ellRange: this.$store.state.ellRange,
+      ellXRange: this.$store.state.ellXRange,
+      ellYRange: this.$store.state.ellYRange,
       triColor: this.$store.state.triColor,
       ellColor: this.$store.state.ellColor,
       seqColor: this.$store.state.seqColor,
@@ -119,11 +120,12 @@ export default {
       this.$store.state[event.target.name] = event.target.value;
     },
     handleRangeChange: function(event) {
-      event.target.name === "triRange"
-        ? (this.polygon = `250-${event.target.value},60 100,400-${
-            event.target.value
-          } 400-${event.target.value},400-${event.target.value}`)
-        : (this.$store.state[event.target.name] = event.target.value);
+      this.$store.state[event.target.name] = event.target.value;
+      if (event.target.name === "ellYRange") {
+        this.$store.state.ellVertical = true;
+      } else if (event.target.name === "ellXRange") {
+        this.$store.state.ellHor = true;
+      }
     },
     handleRotateChange: function(event) {
       console.log("hello");

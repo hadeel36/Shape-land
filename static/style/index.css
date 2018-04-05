@@ -8,7 +8,7 @@
   width: 40%;
   float: right;
   margin-right: -55%;
-  margin-top: 17%;
+  margin-top: 8%;
   overflow: auto;
 }
 
@@ -22,6 +22,12 @@
   float: right;
   right: 6%;
   bottom: 4%;
+}
+
+input[type="text"] {
+  padding: 5%;
+  width: auto;
+  font-size: 14px;
 }
 
 .icon-color {

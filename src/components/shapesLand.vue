@@ -157,3 +157,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.router-link {
+  color: inherit;
+  &:hover {
+    color: rgba(186, 36, 36, 0.87);
+    text-decoration: none;
+  }
+}
+</style>

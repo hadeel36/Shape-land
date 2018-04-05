@@ -22,12 +22,12 @@
           </g>
         </svg>
         <div class="shape__config">
-          <h6>Insert text inside the seq</h6>
           <input
             type="text"
             name="seqText"
             :value="this.$store.state.seqText || ''"
             v-on:input="handleTextChange"
+            placeholder="Insert your text"
           />
         </div>
       </div>
@@ -81,7 +81,7 @@
             class="tri-position"
           />
         </svg>
-        <div class="shape__config">
+        <div class="shape__config" style="margin-top: 25%">
           <input
             type="range"
             name="triRotate"
@@ -93,6 +93,13 @@
           />
         </div>
       </div>
+    </div>
+    <div class="buttons_wrapper">
+      <md-button class="md-fab md-primary">
+        <router-link class="router-link" to="/">
+          <md-icon class="icon-color">home</md-icon>
+        </router-link>
+      </md-button>
     </div>
   </div>
 </template>
@@ -139,7 +146,7 @@ export default {
 .hor-range__wrapper {
   float: left;
   margin-top: 38%;
-  margin-right: 16%;
+  margin-right: 6%;
   height: 150px;
 }
 
@@ -154,7 +161,15 @@ export default {
   width: 150px;
   height: 20px;
   margin: 0;
-  transform-origin: 75px 75px;
+  transform-origin: 82px 72px;
   transform: rotate(-90deg);
+}
+
+.router-link {
+  color: inherit;
+  &:hover {
+    color: rgba(186, 36, 36, 0.87);
+    text-decoration: none;
+  }
 }
 </style>

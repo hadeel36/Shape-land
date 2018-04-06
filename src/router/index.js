@@ -10,12 +10,12 @@ export default new Router({
     {
       path: "/",
       name: "shapesLand",
-      component: shapesLand
+      component: shapesLand,
     },
     {
       path: "/edit",
       name: "editShapes",
-      component: editShapes
+      component: editShapes,
     },
   ],
 });

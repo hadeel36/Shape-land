@@ -16,6 +16,13 @@ export const store = new Vuex.Store({
     ellColor: "#914a62",
     seqColor: "#914a62",
     polygon: "150 50, 100 175, 200 175",
+    addNewShape: false,
+    lineColor: "#914a62",
+    lineX1: 80,
+    lineY1: 80,
+    lineX2: 150,
+    lineY2: 150,
+    showNewShape: false,
     // polygon: {
     //   topPoint: {
     //     x: 150,

@@ -28,7 +28,7 @@
           <md-list-item>
             <md-icon>add</md-icon>
             <span class="md-list-item-text">
-              <router-link class="router-link" to="/add">Add new shape</router-link>
+              <p class="add" v-on:click="showAddDialog">Add new shape</p>
             </span>
           </md-list-item>
 
@@ -39,12 +39,20 @@
         <router-view/>
       </md-app-content>
     </md-app>
+    <addShape :showDialog="this.$store.state.addNewShape"></addShape>
   </div>
 </template>
 
 <script>
+import addShape from "../src/components/addShape";
 export default {
   name: "App",
+  components: { addShape },
+  methods: {
+    showAddDialog: function() {
+      this.$store.state.addNewShape = true;
+    },
+  },
 };
 </script>
 
@@ -55,9 +63,7 @@ export default {
 }
 
 .router-link {
-  color: inherit;
   &:hover {
-    color: rgba(186, 36, 36, 0.87);
     text-decoration: none;
   }
 }
@@ -81,5 +87,13 @@ export default {
   width: 230px;
   max-width: calc(100vw - 125px);
   border-right: 1px solid rgba(24, 21, 21, 0.6);
+}
+
+.add {
+  cursor: pointer;
+  color: #448aff;
+  &:hover {
+    color: rgba(68, 138, 255, 0.8);
+  }
 }
 </style>

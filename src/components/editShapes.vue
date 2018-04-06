@@ -97,7 +97,7 @@
     <div class="buttons_wrapper">
       <md-button class="md-fab md-primary">
         <router-link class="router-link" to="/">
-          <md-icon class="icon-color">home</md-icon>
+          <md-icon>home</md-icon>
         </router-link>
       </md-button>
     </div>

@@ -103,21 +103,26 @@
     <div class="buttons_wrapper">
       <md-button class="md-fab md-primary">
         <router-link class="router-link" to="/edit">
-          <md-icon class="icon-color">edit</md-icon>
+          <md-icon>edit</md-icon>
         </router-link>
       </md-button>
-      <md-button class="md-fab md-plain">
-        <router-link class="router-link" to="/add">
-          <md-icon class="icon-color">add</md-icon>
-        </router-link>
+      <md-button
+        v-on:click="showAddDialog"
+        class="md-fab md-plain"
+      >
+          <md-icon>add</md-icon>
       </md-button>
     </div>
+    <addShape :showDialog="this.$store.state.addNewShape"></addShape>
   </div>
 </template>
 
 <script>
+import addShape from "./addShape";
+
 export default {
   name: "shapesLand",
+  components: { addShape },
   data() {
     return {
       seqRange: this.$store.state.seqRange,
@@ -153,6 +158,9 @@ export default {
               Number(event.target.value)} 175`)
           : (this.$store.state[event.target.name] = event.target.value);
       }
+    },
+    showAddDialog: function() {
+      this.$store.state.addNewShape = true;
     },
   },
 };

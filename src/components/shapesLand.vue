@@ -1,79 +1,42 @@
 <template>
   <div>
     <div class="shapes__wrapper">
-      <draggable class="list-group" element="div" v-model="list" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
-          <transition-group type="transition" :name="'flip-list'">
-            <li class="list-group-item" v-for="element in list" :key="element.order"> 
-              <i :class="element.fixed? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'" @click=" element.fixed=! element.fixed" aria-hidden="true"></i>
-                 <div v-if="element.name === '<squareShape></squareShape>'">
-                    <squareShape></squareShape>
-                  </div>
-                  <div v-if="element.name === '<lineShape></lineShape>'">
-                     <div v-if="showNewShape()">
-                      <lineShape></lineShape>
-                    </div>
-                  </div>
-            </li> 
-          </transition-group>
-      </draggable>
-      <div>
-        <svg class="svg__wrapper">
-          <ellipse
-            cx="200"
-            cy="80"
-            :rx="this.$store.state.ellHor ? 3*this.$store.state.ellXRange : 3*ellRange"
-            :ry="this.$store.state.ellVertical ? 3*this.$store.state.ellYRange : 3*ellRange"
-            v-bind:style="{fill:ellColor}"
-            class="circle-position"
-          />
-        </svg>
-        <div class="shape__config">
-          <input
-            type="range"
-            name="ellRange"
-            v-on:input="handleRangeChange"
-            v-model="ellRange"
-            min="10"
-            max="30"
-            step="1"
-          />
-          <input
-            type="color"
-            name="ellColor"
-            v-on:input="handleColorChange"
-            v-model="ellColor"
-          />
-        </div>
-      </div>
-      <div class="bottom">
-        <svg
-          class="svg__wrapper"
-          v-bind:style="{transform:`rotate(${this.$store.state.triRotate}deg)`}"
+      <draggable
+        class="list-group"
+        element="div"
+        v-model="list"
+        :options="dragOptions"
+        :move="onMove"
+        @start="isDragging=true"
+        @end="isDragging=false"
+      >
+        <transition-group
+          type="transition"
+          :name="'flip-list'"
         >
-          <polygon
-            :points="this.$store.state.polygon"
-            v-bind:style="{fill:triColor}"
-            class="tri-position"
-          />
-        </svg>
-        <div class="shape__config">
-          <input
-            type="range"
-            name="triRange"
-            v-on:input="handleRangeChange"
-            v-model="triRange"
-            min="-10"
-            max="10"
-            step="1"
-          />
-          <input
-            type="color"
-            name="triColor"
-            v-on:input="handleColorChange"
-            v-model="triColor"
-          />
-        </div>
-      </div>
+          <li
+            class="list-group-item"
+            v-for="element in list"
+            :key="element.order"
+          > 
+            <i @click=" element.fixed=! element.fixed" aria-hidden="true"></i>
+                <div v-if="element.name === '<squareShape></squareShape>'">
+                  <squareShape></squareShape>
+                </div>
+                <div v-if="element.name === '<ellipseShape></ellipseShape>'">
+                  <ellipseShape></ellipseShape>
+                </div>
+                <div v-if="element.name === '<triangleShape></triangleShape>'">
+                  <triangleShape></triangleShape>
+                </div>
+                <div v-if="element.name === '<lineShape></lineShape>'">
+                    <div v-if="showNewShape()">
+                    <lineShape></lineShape>
+                  </div>
+                </div>
+          </li> 
+        </transition-group>
+      </draggable>
     </div>
     <div class="buttons_wrapper">
       <md-button class="md-fab md-primary">
@@ -93,20 +56,32 @@
 
 <script>
 import draggable from "vuedraggable";
+// popup component
 import addShape from "./addShape";
+// shapes component
 import lineShape from "./shapes/lineShape";
 import squareShape from "./shapes/squareShape";
+import ellipseShape from "./shapes/ellipseShape";
+import triangleShape from "./shapes/triangleShape";
 
-const message = ["<squareShape></squareShape>", "<lineShape></lineShape>"];
+const message = [
+  "<squareShape></squareShape>",
+  "<ellipseShape></ellipseShape>",
+  "<triangleShape></triangleShape>",
+  "<lineShape></lineShape>",
+];
 export default {
   name: "shapesLand",
-  components: { draggable, addShape, lineShape, squareShape },
+  components: {
+    draggable,
+    addShape,
+    lineShape,
+    squareShape,
+    ellipseShape,
+    triangleShape,
+  },
   data() {
     return {
-      ellRange: this.$store.state.ellRange,
-      triRange: this.$store.state.triRange,
-      triColor: this.$store.state.triColor,
-      ellColor: this.$store.state.ellColor,
       list: message.map((name, index) => {
         return { name, order: index + 1, fixed: false };
       }),
@@ -116,30 +91,6 @@ export default {
     };
   },
   methods: {
-    handleColorChange: function(event) {
-      this.$store.state[event.target.name] = event.target.value;
-    },
-    handleRangeChange: function(event) {
-      if (event.target.name === "ellRange") {
-        if (this.$store.state.ellHor) {
-          this.$store.state.ellXRange = event.target.value;
-          this.$store.state.ellRange = event.target.value;
-        } else if (this.$store.state.ellVertical) {
-          this.$store.state.ellYRange = event.target.value;
-          this.$store.state.ellRange = event.target.value;
-        } else {
-          this.$store.state.ellRange = event.target.value;
-          this.$store.state.ellXRange = event.target.value;
-          this.$store.state.ellYRange = event.target.value;
-        }
-      } else {
-        event.target.name === "triRange"
-          ? (this.$store.state.polygon = `150 ${25 -
-              event.target.value}, ${100 - event.target.value} 175, ${200 +
-              Number(event.target.value)} 175`)
-          : (this.$store.state[event.target.name] = event.target.value);
-      }
-    },
     showAddDialog: function() {
       this.$store.state.addNewShape = true;
     },
@@ -179,13 +130,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.router-link {
-  color: inherit;
-  &:hover {
-    color: rgba(186, 36, 36, 0.87);
-    text-decoration: none;
-  }
-}
 li {
   list-style: none;
 }

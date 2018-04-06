@@ -23,7 +23,7 @@
       <input
         type="range"
         name="seqRange"
-        v-on:input="handleColorChange"
+        v-on:input="handleChange"
         v-model="seqRange"
         min="10"
         max="30"
@@ -32,7 +32,7 @@
       <input
         type="color"
         name="seqColor"
-        v-on:input="handleColorChange"
+        v-on:input="handleChange"
         v-model="seqColor"
       />
     </div>
@@ -50,8 +50,8 @@ export default {
     };
   },
   methods: {
-    handleColorChange: function(event) {
-      this.$store.commit("handleColorChange", event);
+    handleChange: function(event) {
+      this.$store.commit("handleChange", event);
     },
   },
 };

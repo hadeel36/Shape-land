@@ -42,7 +42,7 @@ export const store = new Vuex.Store({
     triRotate: 0,
   },
   mutations: {
-    handleColorChange(state, event) {
+    handleChange(state, event) {
       [event.target.name] = event.target.value;
     },
   },

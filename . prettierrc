@@ -1,5 +1,5 @@
 {
-  "parser": "typescript",
+  "parser": "javascript",
   "singleQuote": true,
   "trailingComma": "all"
 }

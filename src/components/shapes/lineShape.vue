@@ -2,8 +2,8 @@
   <div>
     <svg class="svg__wrapper">
       <line
-        :x1="x1"
-        :y1="y2"
+        :x1="this.$store.state.lineX1"
+        :y1="this.$store.state.lineY1"
         :x2="x2"
         :y2="y2"
         v-bind:style="{stroke:lineColor}"
@@ -45,6 +45,7 @@ export default {
   },
   methods: {
     handleRangeChange: function(event) {
+      console.log(event.target.value);
       this.$store.state.lineX1 = event.target.value * 2;
       this.$store.state.lineY1 = event.target.value * 2;
     },
@@ -57,7 +58,7 @@ export default {
 
 <style scoped>
 .line {
-  transform: translate(68px, -83px);
+  transform: translate(57px, 13px);
   stroke-width: 5;
 }
 </style>

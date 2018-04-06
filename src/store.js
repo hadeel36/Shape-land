@@ -41,4 +41,9 @@ export const store = new Vuex.Store({
     seqText: "",
     triRotate: 0,
   },
+  mutations: {
+    handleColorChange(state, event) {
+      [event.target.name] = event.target.value;
+    },
+  },
 });

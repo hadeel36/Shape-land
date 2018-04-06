@@ -1,45 +1,21 @@
 <template>
   <div>
     <div class="shapes__wrapper">
-      <div class="shape__wrapper">
-        <svg class="svg__wrapper">
-          <g>
-            <rect
-              :width="7*seqRange"
-              :height="7*seqRange"
-              v-bind:style="{fill:seqColor}"
-              class="seq-position"
-            />
-            <text
-              x="110"
-              y="70"
-              font-family="Verdana"
-              font-size="23"
-              fill="white"
-            >
-              {{seqText}}
-            </text>
-          </g>
-        </svg>
-        <div class="shape__config">
-          <input
-            type="range"
-            name="seqRange"
-            v-on:input="handleRangeChange"
-            v-model="seqRange"
-            min="10"
-            max="30"
-            step="1"
-          />
-          <input
-            type="color"
-            name="seqColor"
-            v-on:input="handleColorChange"
-            v-model="seqColor"
-          />
-        </div>
-      </div>
-
+      <draggable class="list-group" element="div" v-model="list" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
+          <transition-group type="transition" :name="'flip-list'">
+            <li class="list-group-item" v-for="element in list" :key="element.order"> 
+              <i :class="element.fixed? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'" @click=" element.fixed=! element.fixed" aria-hidden="true"></i>
+                 <div v-if="element.name === '<squareShape></squareShape>'">
+                    <squareShape></squareShape>
+                  </div>
+                  <div v-if="element.name === '<lineShape></lineShape>'">
+                     <div v-if="showNewShape()">
+                      <lineShape></lineShape>
+                    </div>
+                  </div>
+            </li> 
+          </transition-group>
+      </draggable>
       <div>
         <svg class="svg__wrapper">
           <ellipse
@@ -69,7 +45,6 @@
           />
         </div>
       </div>
-
       <div class="bottom">
         <svg
           class="svg__wrapper"
@@ -99,9 +74,6 @@
           />
         </div>
       </div>
-      <div v-if="this.$store.state.showNewShape">
-        <lineShape></lineShape>
-      </div>
     </div>
     <div class="buttons_wrapper">
       <md-button class="md-fab md-primary">
@@ -116,25 +88,31 @@
           <md-icon>add</md-icon>
       </md-button>
     </div>
-    <addShape :showDialog="this.$store.state.addNewShape"></addShape>
   </div>
 </template>
 
 <script>
+import draggable from "vuedraggable";
 import addShape from "./addShape";
-import lineShape from "./lineShape";
+import lineShape from "./shapes/lineShape";
+import squareShape from "./shapes/squareShape";
+
+const message = ["<squareShape></squareShape>", "<lineShape></lineShape>"];
 export default {
   name: "shapesLand",
-  components: { addShape, lineShape },
+  components: { draggable, addShape, lineShape, squareShape },
   data() {
     return {
-      seqRange: this.$store.state.seqRange,
       ellRange: this.$store.state.ellRange,
       triRange: this.$store.state.triRange,
       triColor: this.$store.state.triColor,
       ellColor: this.$store.state.ellColor,
-      seqColor: this.$store.state.seqColor,
-      seqText: this.$store.state.seqText,
+      list: message.map((name, index) => {
+        return { name, order: index + 1, fixed: false };
+      }),
+      editable: true,
+      isDragging: false,
+      delayedDragging: false,
     };
   },
   methods: {
@@ -165,6 +143,37 @@ export default {
     showAddDialog: function() {
       this.$store.state.addNewShape = true;
     },
+    onMove({ relatedContext, draggedContext }) {
+      const relatedElement = relatedContext.element;
+      const draggedElement = draggedContext.element;
+      return (
+        (!relatedElement || !relatedElement.fixed) && !draggedElement.fixed
+      );
+    },
+    showNewShape() {
+      return this.$store.state.showNewShape;
+    },
+  },
+  computed: {
+    dragOptions() {
+      return {
+        animation: 0,
+        group: "description",
+        disabled: !this.editable,
+        ghostClass: "ghost",
+      };
+    },
+  },
+  watch: {
+    isDragging(newValue) {
+      if (newValue) {
+        this.delayedDragging = true;
+        return;
+      }
+      this.$nextTick(() => {
+        this.delayedDragging = false;
+      });
+    },
   },
 };
 </script>
@@ -176,5 +185,32 @@ export default {
     color: rgba(186, 36, 36, 0.87);
     text-decoration: none;
   }
+}
+li {
+  list-style: none;
+}
+.flip-list-move {
+  transition: transform 0.5s;
+}
+
+.no-move {
+  transition: transform 0s;
+}
+
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+
+.list-group {
+  min-height: 20px;
+}
+
+.list-group-item {
+  cursor: move;
+}
+
+.list-group-item i {
+  cursor: pointer;
 }
 </style>

@@ -135,7 +135,6 @@ export default {
       }
     },
     handleRotateChange: function(event) {
-      console.log("hello");
       this.$store.state.triRotate = event.target.value;
     },
   },

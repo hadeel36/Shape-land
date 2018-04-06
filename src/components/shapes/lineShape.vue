@@ -50,7 +50,7 @@ export default {
       this.$store.state.lineY1 = event.target.value * 2;
     },
     handleColorChange: function(event) {
-      this.$store.state.lineColor = event.target.value;
+      this.$store.state[event.target.name] = event.target.value;
     },
   },
 };

@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     handleChange: function(event) {
-      this.$store.commit("handleChange", event);
+      this.$store.state[event.target.name] = event.target.value;
     },
     handleRangeChange: function(event) {
       this.$store.state.polygon = `150 ${25 - event.target.value}, ${100 -

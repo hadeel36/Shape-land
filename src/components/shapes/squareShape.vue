@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     handleChange: function(event) {
-      this.$store.commit("handleChange", event);
+      this.$store.state[event.target.name] = event.target.value;
     },
   },
 };

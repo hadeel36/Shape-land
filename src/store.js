@@ -23,6 +23,7 @@ export const store = new Vuex.Store({
     lineX2: 150,
     lineY2: 150,
     showNewShape: false,
+    lineRange: 20,
     // polygon: {
     //   topPoint: {
     //     x: 150,

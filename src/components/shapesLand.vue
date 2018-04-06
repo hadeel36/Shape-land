@@ -99,6 +99,9 @@
           />
         </div>
       </div>
+      <div v-if="this.$store.state.showNewShape">
+        <lineShape></lineShape>
+      </div>
     </div>
     <div class="buttons_wrapper">
       <md-button class="md-fab md-primary">
@@ -119,10 +122,10 @@
 
 <script>
 import addShape from "./addShape";
-
+import lineShape from "./lineShape";
 export default {
   name: "shapesLand",
-  components: { addShape },
+  components: { addShape, lineShape },
   data() {
     return {
       seqRange: this.$store.state.seqRange,

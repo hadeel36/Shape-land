@@ -1,7 +1,7 @@
 # shape_land
 
-> Play with shapes as prove of concept using Vue.js framework <br/>
-> https://shapes-land.herokuapp.com/#/
+> Play with shapes as prove of concept using Vue.js framework <br/><br/><br/>
+> Deployed link https://shapes-land.herokuapp.com/#/
 
 ## Build Setup
 

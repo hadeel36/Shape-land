@@ -1,10 +1,11 @@
 # shape_land
 
 > Play with shapes as prove of concept using Vue.js framework
+> https://shapes-land.herokuapp.com/#/
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 

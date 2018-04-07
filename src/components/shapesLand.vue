@@ -8,7 +8,7 @@
         :options="dragOptions"
         :move="onMove"
         @start="isDragging=true"
-        @end="isDragging=false"
+        @end="isDragging=true"
       >
         <transition-group
           type="transition"
@@ -19,7 +19,7 @@
             v-for="element in list"
             :key="element.order"
           > 
-            <i @click=" element.fixed=! element.fixed" aria-hidden="true"></i>
+            <i @click="element.fixed=! element.fixed" aria-hidden="true"></i>
                 <div v-if="element.name === '<squareShape></squareShape>'">
                   <squareShape></squareShape>
                 </div>

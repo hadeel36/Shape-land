@@ -68,19 +68,17 @@ export default {
   }
 }
 
-.md-app {
-  min-height: 400px;
-  border: 1px solid rgba(#000, 0.12);
+.md-toolbar.md-theme-default.md-transparent {
+  background-color: #448aff;
+  color: white;
 }
 
-.toolbar-color {
-  background-color: #5858f8;
+.md-app {
+  min-height: 400px;
 }
 
 .side-title {
   padding-left: 29%;
-  color: white;
-  background-color: #5858f8;
 }
 
 .md-drawer {

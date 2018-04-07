@@ -1,0 +1,57 @@
+.shapes__wrapper {
+  border-right: 1px solid grey;
+  float: left;
+  margin: 4%;
+}
+
+.shape__config {
+  width: 40%;
+  float: right;
+  margin-right: -55%;
+  margin-top: 8%;
+  overflow: auto;
+}
+
+.svg__wrapper {
+  width: 300px;
+  height: 200px;
+}
+
+.buttons_wrapper {
+  position: absolute;
+  float: right;
+  right: 6%;
+  bottom: 4%;
+}
+
+input[type="text"] {
+  padding: 5%;
+  width: auto;
+  font-size: 14px;
+}
+
+.seq-position {
+  transform: translate(99px);
+}
+
+.circle-position {
+  transform: translate(-27px, 30px);
+}
+
+.tri-position {
+  transform: translate(31px);
+}
+
+input[type="range"] {
+  color: #5858f8;
+  cursor: pointer;
+}
+
+.bottom {
+  margin-bottom: 9%;
+}
+
+.line {
+  transform: translate(57px, 13px);
+  stroke-width: 5;
+}

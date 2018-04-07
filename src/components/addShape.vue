@@ -6,8 +6,8 @@
     >
       <md-dialog-title>Add new shape</md-dialog-title>
 
-      <md-tabs md-dynamic-height>
-        <md-tab md-label="Shape">
+      <md-steppers>
+        <md-step id="first" md-label="Select Shape">
           <div>
             <md-radio v-model="radio1" class="md-primary" disabled>
               Sequre
@@ -25,40 +25,39 @@
               <span class="note-text">( Coming soon! )</span>
             </md-radio>
           </div>
-        </md-tab>
+        </md-step>
 
-        <md-tab md-label="Activity">
-          <md-list-item>
-            <span class="md-list-item-text">
-              Choses fill color
-              <input
-                type="color"
-                name="lineColor"
-                v-on:input="handleColorChange"
-                v-model="lineColor"
-                class="color-dialog"
-              />
-            </span>
-          </md-list-item>
-
-          <md-list-item>
-            <div class="md-layout-item">
-              <md-field>
-                <label for="font">Select line size</label>
-                <md-select v-model="font" name="font" id="font">
-                  <md-option v-on:click="handleLineSize" value="small">Small</md-option>
-                  <md-option v-on:click="handleLineSize" value="normal">Normal</md-option>
-                  <md-option v-on:click="handleLineSize" value="large">Large</md-option>
-                </md-select>
-              </md-field>
-            </div>
-          </md-list-item>
-        </md-tab>
-      </md-tabs>
-      <md-dialog-actions>
-        <md-button class="md-primary" @click="hideDialog">Cancel</md-button>
-        <md-button class="md-primary" @click="save">Save</md-button>
-      </md-dialog-actions>
+      <md-step id="second" md-label="Shape attribute">
+        <md-list-item>
+          <span class="md-list-item-text">
+            Choses fill color
+            <input
+              type="color"
+              name="lineColor"
+              v-on:input="handleColorChange"
+              v-model="lineColor"
+              class="color-dialog"
+            />
+          </span>
+        </md-list-item>
+        <md-list-item>
+          <div class="md-layout-item">
+            <md-field>
+              <label for="font">Select line size</label>
+              <md-select v-model="font" name="font" id="font">
+                <md-option v-on:click="handleLineSize" value="small">Small</md-option>
+                <md-option v-on:click="handleLineSize" value="normal">Normal</md-option>
+                <md-option v-on:click="handleLineSize" value="large">Large</md-option>
+              </md-select>
+            </md-field>
+          </div>
+        </md-list-item>
+        <md-dialog-actions>
+          <md-button class="md-primary" @click="hideDialog">Cancel</md-button>
+          <md-button class="md-primary" @click="save" :disabled="!radio3">Save</md-button>
+        </md-dialog-actions>
+        </md-step>
+      </md-steppers>
     </md-dialog>
   </div>
 </template>

@@ -69,7 +69,6 @@
           </div>
         </div>
       </div>
-
       <div class="bottom">
         <svg
           class="svg__wrapper"
@@ -87,6 +86,35 @@
             name="triRotate"
             v-on:input="handleRotateChange"
             v-model="triRotate"
+            min="-180"
+            max="180"
+            step="5"
+          />
+        </div>
+      </div>
+      <div
+        v-if="this.$store.state.showNewShape"
+        class="bottom"
+      >
+        <svg
+          class="svg__wrapper"
+          v-bind:style="{transform:`rotate(${lineRotate}deg)`}"
+        >
+          <line
+            :x1="this.$store.state.lineX1"
+            :y1="this.$store.state.lineY1"
+            :x2="x2"
+            :y2="y2"
+            v-bind:style="{stroke:lineColor}"
+            class="line"
+          />
+        </svg>
+        <div class="shape__config" style="margin-top: 25%">
+          <input
+            type="range"
+            name="triRotate"
+            v-on:input="handleRotateChange"
+            v-model="lineRotate"
             min="-180"
             max="180"
             step="5"
@@ -116,7 +144,11 @@ export default {
       ellColor: this.$store.state.ellColor,
       seqColor: this.$store.state.seqColor,
       triRotate: this.$store.state.triRotate,
+      lineRotate: this.$store.state.lineRotate,
       polygon: this.$store.state.polygon,
+      x2: this.$store.state.lineX2,
+      y2: this.$store.state.lineY2,
+      lineColor: this.$store.state.lineColor,
     };
   },
   methods: {
@@ -135,7 +167,7 @@ export default {
       }
     },
     handleRotateChange: function(event) {
-      this.$store.state.triRotate = event.target.value;
+      this.$store.state[event.target.name] = event.target.value;
     },
   },
 };

@@ -44,9 +44,14 @@ input[type="text"] {
 
 input[type="range"] {
   color: #5858f8;
-  cursor: move;
+  cursor: pointer;
 }
 
 .bottom {
   margin-bottom: 9%;
+}
+
+.line {
+  transform: translate(57px, 13px);
+  stroke-width: 5;
 }

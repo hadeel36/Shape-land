@@ -41,9 +41,11 @@ export default {
   },
   methods: {
     handleChange: function(event) {
+      event.stopPropagation();
       this.$store.state[event.target.name] = event.target.value;
     },
     handleRangeChange: function(event) {
+      event.stopPropagation();
       if (event.target.name === "ellRange") {
         if (this.$store.state.ellHor) {
           this.$store.state.ellXRange = event.target.value;

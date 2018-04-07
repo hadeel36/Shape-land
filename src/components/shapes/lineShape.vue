@@ -37,29 +37,21 @@ export default {
     return {
       lineColor: this.$store.state.lineColor,
       lineRange: this.$store.state.lineRange,
-      x1: this.$store.state.lineX1,
       x2: this.$store.state.lineX2,
-      y1: this.$store.state.lineY1,
       y2: this.$store.state.lineY2,
     };
   },
   methods: {
     handleRangeChange: function(event) {
+      event.stopPropagation();
       console.log(event.target.value);
       this.$store.state.lineX1 = event.target.value * 2;
       this.$store.state.lineY1 = event.target.value * 2;
     },
     handleColorChange: function(event) {
+      event.stopPropagation();
       this.$store.state[event.target.name] = event.target.value;
     },
   },
 };
 </script>
-
-<style scoped>
-.line {
-  transform: translate(57px, 13px);
-  stroke-width: 5;
-}
-</style>
-

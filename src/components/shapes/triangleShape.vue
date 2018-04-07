@@ -41,9 +41,11 @@ export default {
   },
   methods: {
     handleChange: function(event) {
+      event.stopPropagation();
       this.$store.state[event.target.name] = event.target.value;
     },
     handleRangeChange: function(event) {
+      event.stopPropagation();
       this.$store.state.polygon = `150 ${25 - event.target.value}, ${100 -
         event.target.value} 175, ${200 + Number(event.target.value)} 175`;
     },

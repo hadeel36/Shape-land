@@ -40,5 +40,6 @@ export const store = new Vuex.Store({
     // },
     seqText: "",
     triRotate: 0,
+    lineRotate: 0,
   },
 });

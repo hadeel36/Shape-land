@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     handleChange: function(event) {
+      event.stopPropagation();
       this.$store.state[event.target.name] = event.target.value;
     },
   },

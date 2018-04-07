@@ -4,8 +4,8 @@
       <ellipse
         cx="200"
         cy="80"
-        :rx="this.$store.state.ellHor ? 3*this.$store.state.ellXRange : 3*ellRange"
-        :ry="this.$store.state.ellVertical ? 3*this.$store.state.ellYRange : 3*ellRange"
+        :rx="3*this.$store.state.ellXRange"
+        :ry="3*this.$store.state.ellYRange"
         v-bind:style="{fill:ellColor}"
         class="circle-position"
       />
@@ -46,18 +46,16 @@ export default {
     },
     handleRangeChange: function(event) {
       event.stopPropagation();
-      if (event.target.name === "ellRange") {
-        if (this.$store.state.ellHor) {
-          this.$store.state.ellXRange = event.target.value;
-          this.$store.state.ellRange = event.target.value;
-        } else if (this.$store.state.ellVertical) {
-          this.$store.state.ellYRange = event.target.value;
-          this.$store.state.ellRange = event.target.value;
-        } else {
-          this.$store.state.ellRange = event.target.value;
-          this.$store.state.ellXRange = event.target.value;
-          this.$store.state.ellYRange = event.target.value;
-        }
+      if (this.$store.state.ellHor) {
+        this.$store.state.ellXRange = event.target.value;
+        this.$store.state.ellRange = event.target.value;
+      } else if (this.$store.state.ellVertical) {
+        this.$store.state.ellYRange = event.target.value;
+        this.$store.state.ellRange = event.target.value;
+      } else {
+        this.$store.state.ellRange = event.target.value;
+        this.$store.state.ellXRange = event.target.value;
+        this.$store.state.ellYRange = event.target.value;
       }
     },
   },

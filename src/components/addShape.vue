@@ -25,6 +25,9 @@
               <span class="note-text">( Coming soon! )</span>
             </md-radio>
           </div>
+          <md-dialog-actions>
+          <md-button class="md-primary" @click="hideDialog">Cancel</md-button>
+        </md-dialog-actions>
         </md-step>
 
       <md-step id="second" md-label="Shape attribute">
@@ -104,6 +107,7 @@ export default {
 <style lang="scss" scoped>
 .md-dialog {
   max-width: 768px;
+  min-width: 512px;
   z-index: 7;
 }
 .md-radio {

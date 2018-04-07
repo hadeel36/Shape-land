@@ -1,7 +1,9 @@
 # shape_land
 
-> Play with shapes as prove of concept using Vue.js framework <br/><br/><br/>
-> Deployed link https://shapes-land.herokuapp.com/#/
+> Play with shapes as prove of concept using Vue.js framework <br/><br/>
+> Deployed link https://shapes-land.herokuapp.com/#/ <br/><br/>
+> Note => To change the value for sliders that are in draggable components, use
+clicking instead of dragging
 
 ## Build Setup
 

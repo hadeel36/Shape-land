@@ -157,4 +157,8 @@ li {
 .list-group-item i {
   cursor: pointer;
 }
+
+.md-button.md-theme-default.md-fab {
+  background-color: #54aa54;
+}
 </style>
